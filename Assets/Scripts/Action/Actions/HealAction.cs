@@ -7,27 +7,28 @@ namespace Command.Actions
 {
     public class HealAction : IAction
     {
-        private UnitController actorUnit;
-        private UnitController targetUnit;
+        private UnitController m_ActorUnit;
+        private UnitController m_TargetUnit;
+        private bool m_IsSuccessful;
         public TargetType TargetType => TargetType.Friendly;
 
-        public void PerformAction(UnitController actorUnit, UnitController targetUnit)
+        public void PerformAction(UnitController actorUnit, UnitController targetUnit, bool isSuccessful)
         {
-            this.actorUnit = actorUnit;
-            this.targetUnit = targetUnit;
+            m_ActorUnit = actorUnit;
+            m_TargetUnit = targetUnit;
+            m_IsSuccessful = isSuccessful;
 
-            actorUnit.PlayBattleAnimation(ActionType.Heal, CalculateMovePosition(targetUnit), OnActionAnimationCompleted);
+            actorUnit.PlayBattleAnimation(CommandType.Heal, CalculateMovePosition(targetUnit), OnActionAnimationCompleted);
         }
 
         public void OnActionAnimationCompleted()
         {
             GameService.Instance.SoundService.PlaySoundEffects(Sound.SoundType.HEAL);
 
-            if (IsSuccessful())
-                targetUnit.RestoreHealth(actorUnit.CurrentPower);
+            if (m_IsSuccessful)
+                m_TargetUnit.RestoreHealth(m_ActorUnit.CurrentPower);
         }
 
-        public bool IsSuccessful() => true;
 
         public Vector3 CalculateMovePosition(UnitController targetUnit) => targetUnit.GetEnemyPosition();
     }

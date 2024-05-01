@@ -6,31 +6,30 @@ using UnityEngine;
 namespace Command.Actions
 {
     public class CleanseAction : IAction
-    {
-        private const float hitChance = 0.2f;
-        private UnitController actorUnit;
-        private UnitController targetUnit;
+    {     
+        private UnitController m_ActorUnit;
+        private UnitController m_TargetUnit;
+        private bool m_IsSuccessful;
         public TargetType TargetType  => TargetType.Enemy;
 
-        public void PerformAction(UnitController actorUnit, UnitController targetUnit)
+        public void PerformAction(UnitController actorUnit, UnitController targetUnit, bool isSuccessful)
         {
-            this.actorUnit = actorUnit;
-            this.targetUnit = targetUnit;
+            this.m_ActorUnit = actorUnit;
+            this.m_TargetUnit = targetUnit;
+            this.m_IsSuccessful = isSuccessful;
 
-            actorUnit.PlayBattleAnimation(ActionType.Cleanse, CalculateMovePosition(targetUnit), OnActionAnimationCompleted);
+            actorUnit.PlayBattleAnimation(CommandType.Cleanse, CalculateMovePosition(targetUnit), OnActionAnimationCompleted);
         }
 
         public void OnActionAnimationCompleted()
         {
             GameService.Instance.SoundService.PlaySoundEffects(Sound.SoundType.CLEANSE);
 
-            if (IsSuccessful())
-                targetUnit.ResetStats();
+            if (m_IsSuccessful)
+                m_TargetUnit.ResetStats();
             else
                 GameService.Instance.UIService.ActionMissed();
         }
-
-        public bool IsSuccessful() => Random.Range(0f, 1f) < hitChance;
 
         public Vector3 CalculateMovePosition(UnitController targetUnit) => targetUnit.GetEnemyPosition();
     }

@@ -7,29 +7,29 @@ namespace Command.Actions
 {
     public class AttackStanceAction : IAction
     {
-        private UnitController actorUnit;
-        private UnitController targetUnit;
+        private UnitController m_ActorUnit;
+        private UnitController m_TargetUnit;
+        private bool m_IsSuccessful;
         TargetType IAction.TargetType { get => TargetType.Self; }
 
-        public void PerformAction(UnitController actorUnit, UnitController targetUnit)
+        public void PerformAction(UnitController actorUnit, UnitController targetUnit, bool isSuccessful)
         {
-            this.actorUnit = actorUnit;
-            this.targetUnit = targetUnit;
+            m_ActorUnit = actorUnit;
+            m_TargetUnit = targetUnit;
+            m_IsSuccessful = isSuccessful;
 
-            actorUnit.PlayBattleAnimation(ActionType.AttackStance, CalculateMovePosition(targetUnit), OnActionAnimationCompleted);
+            actorUnit.PlayBattleAnimation(CommandType.AttackStance, CalculateMovePosition(targetUnit), OnActionAnimationCompleted);
         }
 
         public void OnActionAnimationCompleted()
         {
             GameService.Instance.SoundService.PlaySoundEffects(Sound.SoundType.ATTACK_STANCE);
 
-            if (IsSuccessful())
-                targetUnit.CurrentPower += (int)(targetUnit.CurrentPower * 0.2f);
+            if (m_IsSuccessful)
+                m_TargetUnit.CurrentPower += (int)(m_TargetUnit.CurrentPower * 0.2f);
             else
                 GameService.Instance.UIService.ActionMissed();
         }
-
-        public bool IsSuccessful() => true;
 
         public Vector3 CalculateMovePosition(UnitController targetUnit) => targetUnit.GetEnemyPosition();
     }

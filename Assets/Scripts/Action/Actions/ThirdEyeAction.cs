@@ -7,31 +7,31 @@ namespace Command.Actions
 {
     public class ThirdEyeAction : IAction
     {
-        private UnitController actorUnit;
-        private UnitController targetUnit;
+        private UnitController m_ActorUnit;
+        private UnitController m_TargetUnit;
+        private bool m_IsSuccessful;
         public TargetType TargetType => TargetType.Self;
 
-        public void PerformAction(UnitController actorUnit, UnitController targetUnit)
+        public void PerformAction(UnitController actorUnit, UnitController targetUnit, bool isSuccessful)
         {
-            this.actorUnit = actorUnit;
-            this.targetUnit = targetUnit;
+            m_ActorUnit = actorUnit;
+            m_TargetUnit = targetUnit;
+            m_IsSuccessful = isSuccessful;
 
-            actorUnit.PlayBattleAnimation(ActionType.BerserkAttack, CalculateMovePosition(targetUnit), OnActionAnimationCompleted);
+            actorUnit.PlayBattleAnimation(CommandType.BerserkAttack, CalculateMovePosition(targetUnit), OnActionAnimationCompleted);
         }
 
         public void OnActionAnimationCompleted()
         {
-            if (IsSuccessful())
+            if (m_IsSuccessful)
             {
-                int healthToConvert = (int)(targetUnit.CurrentHealth * 0.25f);
-                targetUnit.TakeDamage(healthToConvert);
-                targetUnit.CurrentPower += healthToConvert;
+                int healthToConvert = (int)(m_TargetUnit.CurrentHealth * 0.25f);
+                m_TargetUnit.TakeDamage(healthToConvert);
+                m_TargetUnit.CurrentPower += healthToConvert;
             }
             else
                 GameService.Instance.UIService.ActionMissed();
         }
-
-        public bool IsSuccessful() => true;
 
         public Vector3 CalculateMovePosition(UnitController targetUnit) => targetUnit.GetEnemyPosition();
     }
