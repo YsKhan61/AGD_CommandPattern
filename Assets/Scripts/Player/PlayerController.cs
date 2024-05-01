@@ -37,6 +37,26 @@ namespace Command.Player
             TryStaringUnitTurn();
         }
 
+        public void ResetCurrentActiveUnit()
+        {
+            units[activeUnitIndex].ResetUnitIndicator();
+
+            activeUnitIndex--;
+
+            while(activeUnitIndex >= 0)
+            {
+                if (!units[activeUnitIndex].IsAlive())
+                {
+                    activeUnitIndex--;
+                }
+                else
+                {
+                    units[activeUnitIndex].StartUnitTurn();
+                    break;
+                }
+            }
+        }
+
         private void TryStaringUnitTurn()
         {
             if (IsCurrentUnitAlive())
