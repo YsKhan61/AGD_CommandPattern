@@ -1,3 +1,4 @@
+using Command.Commands;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,11 @@ namespace Command.Player
             this.playerService = playerService;
             PlayerID = playerScriptableObject.PlayerID;
             CreateUnits(playerScriptableObject.UnitData, playerScriptableObject.UnitPositions);
+        }
+
+        public void ProcessUnitCommand(UnitCommand commandToProcess)
+        {
+            GetUnitByID(commandToProcess.CommandData.ActorUnitID).ProcessUnitCommand(commandToProcess);
         }
 
         private void CreateUnits(List<UnitScriptableObject> unitScriptableObjects, List<Vector3> unitPositions)

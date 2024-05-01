@@ -11,7 +11,7 @@ namespace Command.Commands
 
         public CleanseCommand(CommandData commandData)
         {
-            m_CommandData = commandData;
+            CommandData = commandData;
             m_HasHitTarget = WillHitTarget();
         }
 

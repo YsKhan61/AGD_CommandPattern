@@ -9,7 +9,7 @@ namespace Command.Commands
 
         public HealCommand(CommandData commandData)
         {
-            m_CommandData = commandData;
+            CommandData = commandData;
             m_HasHitTarget = WillHitTarget();
         }
 

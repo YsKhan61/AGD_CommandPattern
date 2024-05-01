@@ -9,7 +9,7 @@ namespace Command.Commands
 
         public MeditateCommand(CommandData commandData)
         {
-            m_CommandData = commandData;
+            CommandData = commandData;
             m_HasHitTarget = WillHitTarget();
         }
 

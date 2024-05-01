@@ -1,4 +1,5 @@
 using Command.Actions;
+using Command.Commands;
 using Command.Main;
 
 namespace Command.Player
@@ -19,6 +20,22 @@ namespace Command.Player
             CleanPlayers();
             CreatePlayers(player1Data, player2Data);
             StartTurnSequence();
+        }
+
+        public void ProcessUnitCommand(UnitCommand commandToProcess)
+        {
+            SetUnitReferences(commandToProcess);
+
+            GetPlayerById(commandToProcess.CommandData.ActorPlayerID).ProcessUnitCommand(commandToProcess);
+        }
+
+        private void SetUnitReferences(UnitCommand commandToProcess)
+        {
+            var actorUnit = GetPlayerById(commandToProcess.CommandData.ActorPlayerID).GetUnitByID(commandToProcess.CommandData.ActorUnitID);
+            var targetUnit = GetPlayerById(commandToProcess.CommandData.TargetPlayerID).GetUnitByID(commandToProcess.CommandData.TargetUnitID);
+
+            commandToProcess.SetActorUnit(actorUnit);
+            commandToProcess.SetTargetUnit(targetUnit);
         }
 
         private void CleanPlayers()

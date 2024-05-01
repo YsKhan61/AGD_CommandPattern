@@ -4,6 +4,7 @@ using Command.Actions;
 using System.Collections;
 using System;
 using Object = UnityEngine.Object;
+using Command.Commands;
 
 namespace Command.Player
 {
@@ -33,6 +34,8 @@ namespace Command.Player
             InitializeView(unitPosition);
             InitializeVariables();
         }
+
+        public void ProcessUnitCommand(UnitCommand commandToProcess) => GameService.Instance.CommandInvoker.ProcessCommand(commandToProcess);
 
         private void InitializeView(Vector3 positionToSet)
         {

@@ -42,6 +42,8 @@ namespace Command.Main
         [SerializeField] private AudioSource sfxSource;
         [SerializeField] private AudioSource bgMusicSource;
 
+        public void ProcessUnitCommand(ICommand command) => PlayerService.ProcessUnitCommand(command as UnitCommand);
+
         private void Start()
         {
             SoundService = new SoundService(soundScriptableObject, sfxSource, bgMusicSource);

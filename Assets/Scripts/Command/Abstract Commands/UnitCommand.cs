@@ -8,11 +8,11 @@ namespace Command.Commands
         public int TargetUnitID;
         public int ActorPlayerID;
         public int TargetPlayerID;
+        public CommandData CommandData;
 
         protected UnitController m_ActorUnit;
         protected UnitController m_TargetUnit;
-        protected CommandData m_CommandData;
-
+        
         public abstract void Execute();
 
         public abstract bool WillHitTarget();
