@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Command.Commands
 {
-    public class BersekAttackCommand : UnitCommand
+    public class BerserkAttackCommand : UnitCommand
     {
         private const float HIT_CHANCE = 0.66f;
         private bool m_HasHitTarget;
 
-        public BersekAttackCommand(CommandData commandData)
+        public BerserkAttackCommand(CommandData commandData)
         {
             m_CommandData = commandData;
             m_HasHitTarget = WillHitTarget();
