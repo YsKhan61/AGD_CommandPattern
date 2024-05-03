@@ -38,7 +38,7 @@ namespace Command.Main
 
         // Scriptable Objects:
         [SerializeField] private SoundScriptableObject soundScriptableObject;
-        [SerializeField] private List<BattleScriptableObject> battleScriptableObjects;
+        [SerializeField] private BattleDataContainerSO battleScriptableObjects; // [Updated: Changed from List<BattleScriptableObject> to BattleDataContainerSO]
 
         // Scene References:
         [SerializeField] private AudioSource sfxSource;
@@ -51,9 +51,9 @@ namespace Command.Main
             ActionService = new ActionService();
             InputService = new InputService();
             CommandInvoker = new CommandInvoker();
-            BattleService = new BattleService(battleScriptableObjects);
+            BattleService = new BattleService(battleScriptableObjects.BattleDatas);
             PlayerService = new PlayerService();
-            uiService.Init(battleScriptableObjects.Count);
+            uiService.Init(battleScriptableObjects.BattleDatas.Count);
             ReplayService = new ReplayService();
         }
 

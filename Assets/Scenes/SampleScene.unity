@@ -2226,11 +2226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiService: {fileID: 1182275443}
   soundScriptableObject: {fileID: 11400000, guid: 99596b4eff3f838429af37e3a259a546, type: 2}
-  battleScriptableObjects:
-  - {fileID: 11400000, guid: f9f1d2cf049ff604aab41d149ba596e9, type: 2}
-  - {fileID: 11400000, guid: 32addf10f4370374993da88ffd77ac5c, type: 2}
-  - {fileID: 11400000, guid: f6b3f84e1bf293a4d847b3c8ba69cb3f, type: 2}
-  - {fileID: 11400000, guid: d557c56699e216b469d218cc5bd74d5d, type: 2}
+  battleScriptableObjects: {fileID: 11400000, guid: 80b7836e42f3de64f85626c1347251e0, type: 2}
   sfxSource: {fileID: 363944623}
   bgMusicSource: {fileID: 927446004}
 --- !u!4 &1409757741
