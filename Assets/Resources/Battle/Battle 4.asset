@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15700b09dee7b504c8b8f273851c4fcf, type: 3}
-  m_Name: Battle 3
+  m_Name: Battle 4
   m_EditorClassIdentifier: 
-  BattleID: 3
-  BattleBackgroundImage: {fileID: -145743923, guid: 53ddd195ebcffd74cba8e68bd465b5b3, type: 3}
-  Player1Data: {fileID: 11400000, guid: 54c708d0404a70248a7953a3b2b83d35, type: 2}
-  Player2Data: {fileID: 11400000, guid: 373f3a8c5b7afe145ba9ec6ed8c88612, type: 2}
+  BattleID: 4
+  BattleBackgroundImage: {fileID: 1411997606, guid: 53ddd195ebcffd74cba8e68bd465b5b3, type: 3}
+  Player1Data: {fileID: 11400000, guid: c6570e55030bbc24fabedec390459bd1, type: 2}
+  Player2Data: {fileID: 11400000, guid: c94bc8499e6278d4d90ac556fe3a8145, type: 2}

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Battle 2
   m_EditorClassIdentifier: 
   BattleID: 2
-  BattleBackgroundImage: {fileID: -1995944790, guid: 53ddd195ebcffd74cba8e68bd465b5b3, type: 3}
+  BattleBackgroundImage: {fileID: -1946664558, guid: 53ddd195ebcffd74cba8e68bd465b5b3, type: 3}
   Player1Data: {fileID: 11400000, guid: 61221b2f7d002804fb1bf1cb769a118e, type: 2}
   Player2Data: {fileID: 11400000, guid: bbce67b53c25b4143915b6f149729d37, type: 2}
