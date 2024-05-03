@@ -9,13 +9,13 @@ namespace Command.Replay
 {
     public enum ReplayState
     {
-        Active,
-        Deactive
+        ACTIVE,
+        DEACTIVE
     }
 
     public class ReplayService
     {
-        private const int REPLAY_DELAY = 1;
+        private const int REPLAY_DELAY = 2;
 
         /// <summary>
         /// Property to get the current replay state.
@@ -28,7 +28,10 @@ namespace Command.Replay
         /// <summary>
         /// A constructor to initialize the ReplayService with a Deactive state.
         /// </summary>
-        public ReplayService() => SetReplayState(ReplayState.Deactive);
+        public ReplayService()
+        {
+            SetReplayState(ReplayState.DEACTIVE);
+        }
 
         /// <summary>
         /// Method to set the replay state
@@ -53,7 +56,7 @@ namespace Command.Replay
                 return;
             }
 
-            ReplayState = ReplayState.Active;
+            ReplayState = ReplayState.ACTIVE;
 
             replayRoutine = GameService.Instance.StartCoroutine(ReplayRoutine());
         }
@@ -67,10 +70,13 @@ namespace Command.Replay
             {
                 GameService.Instance.StopCoroutine(replayRoutine);
             }
-            ReplayState = ReplayState.Deactive;
+            ReplayState = ReplayState.DEACTIVE;
         }
 
-        void ExecuteNext()
+        /// <summary>
+        /// Execute the next command in the replay stack.
+        /// </summary>
+        public void ExecuteNext()
         {
             if (replayCommandStack.Count > 0)
             {
@@ -87,7 +93,7 @@ namespace Command.Replay
             }
 
             replayRoutine = null;
-            ReplayState = ReplayState.Deactive;
+            ReplayState = ReplayState.DEACTIVE;
         }
     }
 
