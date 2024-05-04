@@ -133,6 +133,8 @@ namespace Command.Player
                 unitView.PlayAnimation(UnitAnimations.ACTION1);
             else if (actionType == unitScriptableObject.executableCommands[1])
                 unitView.PlayAnimation(UnitAnimations.ACTION2);
+            else if (actionType == unitScriptableObject.executableCommands[2])
+                unitView.PlayAnimation(UnitAnimations.ACTION3);
             else
                 throw new System.Exception($"No Animation found for the action type : {actionType}");
         }

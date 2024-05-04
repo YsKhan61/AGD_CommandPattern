@@ -38,6 +38,7 @@ namespace Command.Player
         IDLE,
         ACTION1,
         ACTION2,
+        ACTION3,
         HIT,
         DEATH
     }
